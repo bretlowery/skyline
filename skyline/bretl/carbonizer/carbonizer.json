@@ -1,0 +1,62 @@
+{
+  "id": "%id",
+  "version": "0.0.1",
+  "format": "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\"",
+  "metric": "$remote_addr $http_user_agent $request $http_referer",
+  "timestamp": "$time_local",
+  "fields": [
+      {
+            "name": "$remote_addr",
+            "regex": "(\\d+.\\d+.\\d+.\\d+)",
+            "fields": "%a",
+            "output": "{\"ips\": [\"%s\", \"%a24\", \"%a16\"]}"
+      },
+      {
+            "name": "$remote_user",
+            "regex": "(.+)",
+            "fields": "%u",
+            "output": "{\"ru\": \"%s\"}"
+      },
+      {
+            "name": "$time_local",
+            "regex": "(.+)",
+            "fields": "\"%t\""
+      },
+      {
+            "name": "$request",
+            "regex": "(.+)",
+            "fields": "\\\"%r\\\"",
+            "output": "{\"rq\":{\"t\": \"%rt\", \"p\": \"%rp\"}}"
+      },
+      {
+            "name": "$status",
+            "regex": "(\\d+)",
+            "fields": "%s",
+            "output": "{\"s\": \"%s\"}"
+      },
+      {
+            "name": "$body_bytes_sent",
+            "regex": "(\\d+)",
+            "fields": "",
+            "output": ""
+      },
+      {
+            "name": "$http_referer",
+            "regex": "(.+)",
+            "fields": "\\\"%{Referer}i\\\"",
+            "output": "{\"rf\": \"%s\"}"
+      },
+      {
+            "name": "$http_user_agent",
+            "regex": "(.*)",
+            "fields": "\\\"%{User-Agent}i\\\"",
+            "output": "{\"ua\": {\"raw\": \"%s\", \"bf\": \"%bf\", \"bv\": \"%bv\", \"of\": \"%of\", \"ov\": \"%ov\", \"df\": \"%df\", \"db\": \"%db\", \"dm\": \"%dm\", \"m\": \"%mob\", \"t\": \"%tab\", \"pc\": \"%pc\", \"bot\": \"%bot\"}"
+      },
+      {
+            "name": "-",
+            "regex": "-",
+            "fields": "",
+            "output": ""
+      }
+  ]
+}
