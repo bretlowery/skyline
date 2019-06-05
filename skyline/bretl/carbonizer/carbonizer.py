@@ -78,7 +78,6 @@ if PY3:
 else:
     text_type = unicode
 
-
 def force_text(s, encoding='utf-8', errors='strict'):
     if isinstance(s, text_type):
         return s
