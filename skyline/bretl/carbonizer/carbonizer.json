@@ -1,6 +1,7 @@
 {
   "id": "%id",
   "version": "0.0.1",
+  "topic": "",
   "format": "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\"",
   "metric": "$remote_addr $http_user_agent $request $http_referer",
   "timestamp": "$time_local",
@@ -50,7 +51,7 @@
             "name": "$http_user_agent",
             "regex": "(.*)",
             "fields": "\\\"%{User-Agent}i\\\"",
-            "output": "{\"ua\": {\"raw\": \"%s\", \"bf\": \"%bf\", \"bv\": \"%bv\", \"of\": \"%of\", \"ov\": \"%ov\", \"df\": \"%df\", \"db\": \"%db\", \"dm\": \"%dm\", \"m\": \"%mob\", \"t\": \"%tab\", \"pc\": \"%pc\", \"bot\": \"%bot\"}"
+            "output": "{\"ua\": {\"raw\": \"%s\", \"bf\": \"%bf\", \"bv\": \"%bv\", \"of\": \"%of\", \"ov\": \"%ov\", \"df\": \"%df\", \"db\": \"%db\", \"dm\": \"%dm\", \"m\": \"%mob\", \"t\": \"%tab\", \"pc\": \"%pc\"}"
       },
       {
             "name": "-",
@@ -58,5 +59,9 @@
             "fields": "",
             "output": ""
       }
-  ]
+  ],
+  "sendto" : {
+    "client": "carbon",
+    "url": ""
+  }
 }
